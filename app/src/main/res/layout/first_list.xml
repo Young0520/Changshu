@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@mipmap/bg"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- the login button -->
+        <Button
+            android:id="@+id/btnQianyin"
+            style="@style/textstyle"
+            android:layout_width="fill_parent"
+            android:background="@drawable/cycleanytext_shape"
+            android:onClick="OnQianyinClick"
+            android:text="@string/qianyin"/>
+        <Button
+            android:id="@+id/btnYajie"
+            style="@style/textstyle"
+            android:layout_width="fill_parent"
+            android:background="@drawable/cycleanytext_shape"
+            android:onClick="OnYajieClick"
+            android:text="@string/yajie"/>
+        <Button
+            style="@style/textstyle"
+            android:layout_width="fill_parent"
+            android:background="@drawable/cycleanytext_shape"
+            android:text="@string/yuliu"/>
+        <Button
+            style="@style/textstyle"
+            android:layout_width="fill_parent"
+            android:background="@drawable/cycleanytext_shape"
+            android:text="@string/yuliu"/>
+
+    </LinearLayout>
+
+</LinearLayout>

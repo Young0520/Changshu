@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="2dp"
+        android:foreground="?android:attr/selectableItemBackground">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="8dp"
+            android:background="#ededed" />
+
+        <TextView
+            android:id="@+id/toolname"
+            android:gravity="center"
+            android:textColor="#333"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            tools:text="工具名"/>
+
+        <TextView
+            android:layout_toRightOf="@id/toolname"
+            android:id="@+id/type"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:textColor="#333"
+            android:textSize="16dp"
+            tools:text="型号" />
+
+        <TextView
+            android:layout_toRightOf="@id/type"
+            android:id="@+id/rest_number"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="可用数量"
+            android:textColor="#333"
+            android:textSize="16dp" />
+
+
+        <EditText
+            android:layout_toRightOf="@id/rest_number"
+            android:id="@+id/borrow_num"
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:textColor="#333"
+            android:textSize="16dp"
+            tools:text="1" />
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
