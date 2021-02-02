@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnBack"
-            style="@style/btnStyle"
-            android:layout_width="100dp"
-            android:textSize="22sp"
-            android:onClick="OnBackClick"
-            android:layout_marginLeft="10dp"
-            android:text="返回"/>
-
-    </LinearLayout>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".service.ApplyListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +40,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/tool_list"
+        android:id="@+id/applies_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ListView>

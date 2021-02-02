@@ -12,13 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".service.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".service.UserMainActivity" android:launchMode="singleTop"/>
+        <activity android:name=".service.FirstListActivity"/>
+        <activity android:name=".service.SecondListActivity"/>
+        <activity android:name=".service.ManagerMainActivity" android:launchMode="singleTop"/>
+        <activity android:name=".service.AuditListActivity"/>
+        <activity android:name=".service.AuditDetailActivity"/>
+        <activity android:name=".service.ApplyListActivity"/>
+        <activity android:name=".service.BorrowListActivity"/>
+        <activity android:name=".service.ToolListActivity"/>
+        <activity android:name=".service.PasswordActivity"/>
+
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="uses-permission android:name=“android.permission.ACCESS_NETWORK_STATE”"/>
 </manifest>

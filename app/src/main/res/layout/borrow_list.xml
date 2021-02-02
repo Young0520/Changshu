@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".service.BorrowListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnBack"
-            style="@style/btnStyle"
-            android:layout_width="100dp"
-            android:textSize="22sp"
-            android:onClick="OnBackClick"
-            android:layout_marginLeft="10dp"
-            android:text="返回"/>
 
         <Button
             android:id="@+id/btnCommit"
             style="@style/btnStyle"
             android:layout_width="150dp"
-            android:layout_marginLeft="130dp"
+            android:layout_marginLeft="10dp"
             android:onClick="OnCommitClick"
             android:text="提交申请"
             android:textSize="22sp" />
@@ -69,25 +64,26 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/borrow_list"
+        android:id="@+id/borrows_list"
         android:layout_width="match_parent"
-        android:layout_height="450dp">
+        android:layout_height="350dp"
+        android:layout_weight="1">
     </ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         android:layout_margin="2dp"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:text="借用起始时间">
             </TextView>
 
@@ -96,7 +92,7 @@
                 android:id="@+id/btnStartTime"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:gravity="center"
                 android:onClick="OnStartTimeClick"
                 android:layout_marginLeft="10dp"
@@ -106,13 +102,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:text="工具归还时间">
             </TextView>
 
@@ -120,7 +116,7 @@
                 android:id="@+id/btnEndTime"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:onClick="OnEndTimeClick"
                 android:layout_marginLeft="10dp"
                 android:text=""/>

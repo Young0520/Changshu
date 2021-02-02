@@ -19,33 +19,45 @@
             android:background="#ededed" />
 
         <TextView
-            android:id="@+id/list_id"
+            android:id="@+id/toolname"
+            android:gravity="center"
+            android:textColor="#333"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            tools:text="工具名"/>
+
+        <TextView
+            android:layout_toRightOf="@id/toolname"
+            android:id="@+id/type"
             android:layout_width="100dp"
             android:layout_height="fill_parent"
             android:gravity="center"
             android:textColor="#333"
             android:textSize="16dp"
-            tools:hint="单号" />
+            tools:text="型号" />
 
         <TextView
-            android:layout_toRightOf="@id/list_id"
-            android:id="@+id/apply_time"
-            android:layout_width="200dp"
+            android:layout_toRightOf="@id/type"
+            android:id="@+id/rest_number"
+            android:layout_width="100dp"
             android:layout_height="fill_parent"
             android:gravity="center"
-            android:textColor="#333"
-            android:textSize="16dp"
-            tools:hint="申请时间" />
-
-        <TextView
-            android:layout_toRightOf="@id/apply_time"
-            android:id="@+id/state"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center"
-            android:hint="审核状态"
+            android:text="可用数量"
             android:textColor="#333"
             android:textSize="16dp" />
+
+
+        <TextView
+            android:layout_toRightOf="@id/rest_number"
+            android:id="@+id/borrow_num"
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:textColor="#333"
+            android:text="借用数量"
+            android:textSize="16dp"
+            android:inputType="number"/>
+
 
     </RelativeLayout>
 

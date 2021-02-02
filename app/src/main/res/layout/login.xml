@@ -3,9 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@mipmap/bg"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".service.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,14 +24,13 @@
             android:textSize="30sp"/>
         <!-- input account -->
         <EditText
-            android:id="@+id/editPhone"
+            android:id="@+id/userName"
             style="@style/textstyle"
             android:layout_width="fill_parent"
             android:background="@drawable/rounded_edittext_states"
-            android:hint="用户ID"
+            android:hint="用户名"
             android:lines="1"
             android:singleLine="true"
-            android:inputType="number"
             android:maxLength="11"/>
         <!-- input pwd -->
         <EditText
@@ -52,26 +53,26 @@
             android:text="@string/login"/>
 
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="horizontal">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:orientation="horizontal">-->
 
-            <!-- start register button -->
-            <TextView
-                android:id="@+id/txtStartRegist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                android:text="@string/forgetPwd"
-                android:clickable="true"
-                android:onClick="OnMyRegistClick"
-                android:textSize="15sp"/>
+<!--            &lt;!&ndash; start register button &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/txtForget"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/forgetPwd"-->
+<!--                android:clickable="true"-->
+<!--                android:onClick="OnMyForgetClick"-->
+<!--                android:textSize="15sp"/>-->
 
-            <!--android:textColor="#ffff"-->
-        </RelativeLayout>
+<!--            &lt;!&ndash;android:textColor="#ffff"&ndash;&gt;-->
+<!--        </RelativeLayout>-->
 
     </LinearLayout>
 
