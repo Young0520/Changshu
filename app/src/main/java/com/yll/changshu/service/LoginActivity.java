@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void OnMyLoginClick(View v){
         if(pubFun.isEmpty(user_name.getText().toString()) || pubFun.isEmpty(editPwd.getText().toString())){
-            Toast.makeText(this, "用户ID或密码不能为空！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "用户名或密码不能为空！", Toast.LENGTH_SHORT).show();
             return;
         }
         else{

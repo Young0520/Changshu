@@ -54,9 +54,13 @@ public class BorrowListAdpter extends BaseAdapter {
             BorrowList borrowList = borrowLists.get(position);
             if(borrowList!=null){
                 convertView.setTag(borrowList);
+                String stateText = "已审核";
                 list_id.setText(""+borrowList.getList_id());
                 apply_time.setText(pubFun.format(borrowList.getApply_out()));
-                state.setText(""+borrowList.getState());
+                if(borrowList.getState() == 0){
+                    stateText = "未审核";
+                }
+                state.setText(stateText);
             }
         }
         return convertView;
