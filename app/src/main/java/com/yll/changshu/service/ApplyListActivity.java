@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,11 +19,12 @@ import com.yll.changshu.Adapter.BorrowToolAdapter;
 import com.yll.changshu.R;
 import com.yll.changshu.dao.BorrowListDao;
 import com.yll.changshu.dao.ToolNameDao;
+import com.yll.changshu.dao.UserDao;
 import com.yll.changshu.entity.BorrowList;
 import com.yll.changshu.entity.BorrowTool;
+import com.yll.changshu.entity.User;
 import com.yll.changshu.util.pubFun;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ApplyListActivity extends AppCompatActivity {
@@ -45,6 +47,26 @@ public class ApplyListActivity extends AppCompatActivity {
                     } else {
                         borrowListAdpter = new BorrowListAdpter(ApplyListActivity.this, borrowLists);
                         listView.setAdapter(borrowListAdpter);
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view,
+                                                    int position, long id) {
+                                Intent intent=new Intent();
+                                Bundle bundle=new Bundle();
+                                BorrowList bl = (BorrowList) view.getTag();
+                                bundle.putInt("list_id",bl.getList_id());
+                                bundle.putInt("user_id",user_id);
+                                bundle.putString("corp_name", bl.getApply_corp());
+                                bundle.putString("apply_time",pubFun.format(bl.getApply_out()));
+                                bundle.putInt("state", bl.getState());
+                                bundle.putString("cancel_reason", bl.getCancel_reason());
+                                intent.putExtras(bundle);
+                                intent.setClass(ApplyListActivity.this, AuditDetailActivity.class);
+                                ApplyListActivity.this.startActivityForResult(intent,1);
+                            }
+                        });
+                        break;
                     }
                     break;
                 default:
@@ -62,9 +84,7 @@ public class ApplyListActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         Bundle bundle = getIntent().getExtras();
-//        user_name = bundle.getString("user_name");
         user_id = bundle.getInt("user_id");
-        System.out.println(user_id);
         listView = (ListView) findViewById(R.id.applies_list);
 
         handler = new ApplyListActivity.MyHandler();
@@ -92,6 +112,11 @@ public class ApplyListActivity extends AppCompatActivity {
                     Message msg = handler.obtainMessage();
                     BorrowListDao borrowListDao = BorrowListDao.getBorrowListDao();
                     borrowLists = borrowListDao.getBorrowListByUser_id(user_id);
+                    UserDao userDao = UserDao.getUserDao();
+                    User user = userDao.getUserById(user_id);
+                    for(BorrowList borrowList : borrowLists){
+                        borrowList.setApply_corp(user.getCompany_name());
+                    }
                     msg.what = 0;
                     handler.sendMessage(msg);
                 } catch (Exception e){
@@ -101,14 +126,4 @@ public class ApplyListActivity extends AppCompatActivity {
         }).start();
     }
 
-//    public void OnBackClick(View v){
-////        Bundle bundle = new Bundle();
-////        bundle.putInt("toolname_id", toolname_id);
-////        bundle.putInt("user_id",user_id);
-////        bundle.putInt("node_id",father_id);
-//        Intent intent = new Intent();
-////        intent.putExtras(bundle);
-//        setResult(RESULT_OK, intent);
-//        finish();
-//    }
 }

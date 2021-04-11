@@ -110,17 +110,18 @@ public class BorrowListDao {
         return borrowList;
     }
 
-    public List<BorrowList> getBorrowListByCustomid(int customid){
+    public List<BorrowList> getBorrowListByApprover_id(int approver_id){
         List<BorrowList> list = new ArrayList<>();
         //MySQL 语句
-        String sql="select * from Changshu.borrowlist where customid = ?";
+        String sql="select * from Changshu.borrowlist where approver_id = ? or state = ?";
         //获取链接数据库对象
         conn= DBOpenHelper.getConn();
         try {
 
             if(conn!=null&&(!conn.isClosed())){
                 ps= (PreparedStatement) conn.prepareStatement(sql);
-                ps.setInt(1,customid);
+                ps.setInt(1,approver_id);
+                ps.setInt(2,0);
                 if(ps!=null){
                     rs= ps.executeQuery();
                     if(rs!=null){
@@ -221,7 +222,7 @@ public class BorrowListDao {
             e.printStackTrace();
         }
         DBOpenHelper.closeAll(conn,ps,rs);//关闭相关操作
-//        System.out.println(list.size());
+//        .println(list.size());
         return list;
     }
 
@@ -266,16 +267,17 @@ public class BorrowListDao {
         return result;
     }
 
-    public int updateBorrowListCancel_reasonByList_id(int list_id, String cancel_reason){
+    public int updateBorrowListCancel_reasonByList_id(int list_id, int approver_id, String cancel_reason){
         int result = -1;
-        String sql = "update Changshu.borrowlist set cancle_reason = ? where list_id = ?";
+        String sql = "update Changshu.borrowlist set cancle_reason = ?, approver_id = ? where list_id = ?";
         conn = DBOpenHelper.getConn();
         try{
             boolean closed=conn.isClosed();
             if(conn!=null&&(!closed)){
                 ps= (PreparedStatement) conn.prepareStatement(sql);
                 ps.setString(1,cancel_reason);//第一个参数psw 一定要和上面SQL语句字段顺序一致
-                ps.setInt(2,list_id);//第二个参数userId 一定要和上面SQL语句字段顺序一致
+                ps.setInt(2,approver_id);//第一个参数psw 一定要和上面SQL语句字段顺序一致
+                ps.setInt(3,list_id);//第二个参数userId 一定要和上面SQL语句字段顺序一致
                 result=ps.executeUpdate();//返回1 执行成功
             }
         } catch (SQLException e) {

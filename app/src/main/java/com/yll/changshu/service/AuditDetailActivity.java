@@ -38,6 +38,8 @@ public class AuditDetailActivity extends AppCompatActivity {
     private int user_id;
     private String corp_name;
     private String apl_time;
+    private int state;
+    private String cancel_reason;
     private TextView listId;
     private TextView apply_corp;
     private TextView apply_time;
@@ -45,6 +47,9 @@ public class AuditDetailActivity extends AppCompatActivity {
     private TextView reason;
     private BorrowList borrowList;
     private LinearLayout denyll;
+    private TextView auditResult;
+    private LinearLayout result;
+    private LinearLayout auditGrp;
     private List<BorrowTool> borrowToolList;
     private ListView listView;
     private AuditDetailAdapter auditDetailAdapter;
@@ -87,6 +92,8 @@ public class AuditDetailActivity extends AppCompatActivity {
         list_id = bundle.getInt("list_id");
         corp_name = bundle.getString("corp_name");
         apl_time = bundle.getString("apply_time");
+        state = bundle.getInt("state");
+        cancel_reason = bundle.getString("cancel_reason");
         handler = new AuditDetailActivity.MyHandler();
 
         getBorrowListDetail();
@@ -99,25 +106,36 @@ public class AuditDetailActivity extends AppCompatActivity {
         apply_time.setText(apl_time);
 
         listView = (ListView) findViewById(R.id.borrows_list);
-
-        radioGrp = (RadioGroup) findViewById(R.id.radioGrp);
-        //第一种获得单选按钮值的方法
-        //为radioGroup设置一个监听器:setOnCheckedChanged()
-        radioGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                RadioButton radbtn = (RadioButton) findViewById(checkedId);
-//                System.out.println(checkedId);
-//                System.out.println(R.id.deny);
-                denyll = (LinearLayout) findViewById(R.id.denyll);
-                if(checkedId == R.id.approve){
-                    denyll = (LinearLayout) findViewById(R.id.denyll);
-                    denyll.setVisibility(View.GONE);
-                }else {
-                    denyll.setVisibility(View.VISIBLE);
-                }
+        if(state != 0){
+            result = (LinearLayout) findViewById(R.id.result);
+            result.setVisibility(View.VISIBLE);
+            auditResult = (TextView)findViewById(R.id.audit_result);
+            if(state == 4) {
+                auditResult.setText("不通过,拒绝理由：" + cancel_reason);
+            }else if(state == 1){
+                auditResult.setText("通过");
             }
-        });
+
+        } else {
+            auditGrp = (LinearLayout) findViewById(R.id.auditGrp);
+            auditGrp.setVisibility(View.VISIBLE);
+            radioGrp = (RadioGroup) findViewById(R.id.radioGrp);
+            //第一种获得单选按钮值的方法
+            //为radioGroup设置一个监听器:setOnCheckedChanged()
+            radioGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                RadioButton radbtn = (RadioButton) findViewById(checkedId);
+                    denyll = (LinearLayout) findViewById(R.id.denyll);
+                    if (checkedId == R.id.approve) {
+                        denyll = (LinearLayout) findViewById(R.id.denyll);
+                        denyll.setVisibility(View.GONE);
+                    } else {
+                        denyll.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
 
 
     }
@@ -173,7 +191,9 @@ public class AuditDetailActivity extends AppCompatActivity {
             String denyReason = reason.getText().toString();
             borrowList.setCancel_reason(denyReason);
             borrowList.setState(4);
+            borrowList.setApprover_id(user_id);
         } else if(approve.isChecked()){
+            borrowList.setApprover_id(user_id);
             borrowList.setState(1);
         } else {
             Toast.makeText(AuditDetailActivity.this, "请选择批准或者不批准", Toast.LENGTH_SHORT).show();
@@ -191,7 +211,7 @@ public class AuditDetailActivity extends AppCompatActivity {
                     BorrowListDao borrowListDao = BorrowListDao.getBorrowListDao();
                     borrowListDao.updateBorrowListStateByList_id(borrowList.getState(), borrowList.getList_id());
                     if(borrowList.getState() == 4){
-                        borrowListDao.updateBorrowListCancel_reasonByList_id(borrowList.getList_id(), borrowList.getCancel_reason());
+                        borrowListDao.updateBorrowListCancel_reasonByList_id(borrowList.getList_id(), borrowList.getApprover_id(),borrowList.getCancel_reason());
                     }
 //                    else {
 //                        ToolInventoryDao toolInventoryDao = ToolInventoryDao.getToolInventoryDao();

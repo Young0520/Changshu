@@ -129,12 +129,12 @@
     </ListView>
 
     <LinearLayout
+        android:id="@+id/auditGrp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:orientation="horizontal">
-
-
+        android:orientation="horizontal"
+        android:visibility="gone">
         <RadioGroup
             android:id="@+id/radioGrp"
             android:orientation="horizontal"
@@ -166,6 +166,30 @@
             android:onClick="OnCommitClick"
             android:layout_gravity="center"
             android:text="审核" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:text="审核结果：">
+        </TextView>
+
+        <TextView
+            android:id="@+id/audit_result"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:text="">
+        </TextView>
     </LinearLayout>
 
     <LinearLayout

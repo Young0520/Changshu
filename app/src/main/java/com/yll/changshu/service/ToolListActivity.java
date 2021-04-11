@@ -107,41 +107,24 @@ public class ToolListActivity extends AppCompatActivity {
         }).start();
 
     }
-//
-//    public void OnBackClick(View v){
-////        Bundle bundle = new Bundle();
-////        bundle.putInt("toolname_id", toolname_id);
-////        bundle.putInt("user_id",user_id);
-////        bundle.putInt("node_id",father_id);
-//        Intent intent = new Intent();
-////        intent.putExtras(bundle);
-//        setResult(RESULT_OK, intent);
-//        finish();
-//    }
 
     public void OnGenApplyClick(View v){
         borrowToolList = new ArrayList<BorrowTool>();
         for(int i = 0;i<toolInventoryAdapter.getCount();i++){
             View view = (View)listview.getAdapter().getView(i,null,null);
-//            LinearLayout linearLayout = (LinearLayout)listview.getAdapter().getView(i,null,null);
             ToolInventory toolInventory = (ToolInventory) view.getTag();
             CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkBox);
             TextView type = (TextView) view.findViewById(R.id.type);
             TextView parameter = (TextView) view.findViewById(R.id.parameter);
-            TextView rest_number = (TextView) view.findViewById(R.id.rest_number);
-//            System.out.println(type.getText().toString());
-//            System.out.println(checkBox.isChecked());
             if(checkBox.isChecked()){
                 BorrowTool borrowTool = new BorrowTool();
                 borrowTool.setToolname(toolInventory.getToolname());
                 borrowTool.setType(toolInventory.getTooltype());
                 borrowTool.setToolname_id(toolInventory.getToolname_id());
                 borrowTool.setRest_number(toolInventory.getNow_number());
-//                System.out.println(borrowTool.getRest_number());
                 borrowTool.setNumber(0);
                 borrowTool.setState(0);
                 borrowToolList.add(borrowTool);
-//                borrowTool.setRest_number(Integer.parseInt(rest_number.getText().toString()));
             }
         }
         Bundle bundle = new Bundle();
@@ -153,23 +136,5 @@ public class ToolListActivity extends AppCompatActivity {
         intent.setClass(ToolListActivity.this, BorrowListActivity.class);
         ToolListActivity.this.startActivityForResult(intent, 1);
     }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        //这里要通过请求码来判断数据的来源
-//        switch (requestCode) {
-//            case 1:
-//                //判断请求的结果是否成功，resultCode == RESULT_OK，代表成功了
-//                if (resultCode == RESULT_OK) {
-//                    Bundle bundle = data.getExtras();
-//                    getToolInventoryData();
-////                    Toast.makeText(AuditListActivity.this, "返回", Toast.LENGTH_LONG).show();
-//                }
-//                break;
-//            default:
-//                break;
-//        }
-//    }
 
 }

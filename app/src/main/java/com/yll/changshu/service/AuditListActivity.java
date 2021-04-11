@@ -51,6 +51,8 @@ public class AuditListActivity extends AppCompatActivity {
                             bundle.putInt("user_id",user_id);
                             bundle.putString("corp_name", bl.getApply_corp());
                             bundle.putString("apply_time",pubFun.format(bl.getApply_out()));
+                            bundle.putInt("state", bl.getState());
+                            bundle.putString("cancel_reason", bl.getCancel_reason());
                             intent.putExtras(bundle);
                             intent.setClass(AuditListActivity.this, AuditDetailActivity.class);
                             AuditListActivity.this.startActivityForResult(intent,1);
@@ -98,7 +100,7 @@ public class AuditListActivity extends AppCompatActivity {
                     Message msg = handler.obtainMessage();
                     BorrowListDao borrowListDao = BorrowListDao.getBorrowListDao();
                     UserDao userDao = UserDao.getUserDao();
-                    borrowLists = borrowListDao.getBorrowListByState(0);
+                    borrowLists = borrowListDao.getBorrowListByApprover_id(user_id);
                     for(BorrowList borrowList : borrowLists){
                         User user = userDao.getUserById(borrowList.getCustomId());
                         borrowList.setApply_corp(user.getCompany_name());
